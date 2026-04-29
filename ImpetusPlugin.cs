@@ -54,8 +54,8 @@ namespace Impetus
                     )
                 );
             VelocityMultiplier = config("Spear", "Velocity Multiplier", 2f, new ConfigDescription("Spear velocity multiplier.\nRecommended: 2", new AcceptableValueRange<float>(1f, 5f)));
-            SpearGravity = config("Spear", "Gravity", 10f, new ConfigDescription("Change the spear's gravity. Vanilla is 5.\nRecommended: 5", new AcceptableValueRange<float>(1f, 30f)));
-            SpearLaunchAngle = config("Spear", "Launch Angle", -1f, new ConfigDescription("The vertical angle at which the spear leaves after being thrown. Vanilla is 0.\nRecommended: -1", new AcceptableValueRange<float>(-5f, 0f)));
+            SpearGravity = config("Spear", "Gravity", 7f, new ConfigDescription("Change the spear's gravity. Vanilla is 5.\nRecommended: 7", new AcceptableValueRange<float>(1f, 30f)));
+            SpearLaunchAngle = config("Spear", "Launch Angle", -1.5f, new ConfigDescription("The vertical angle at which the spear leaves after being thrown. Vanilla is 0.\nRecommended: -1.5", new AcceptableValueRange<float>(-5f, 0f)));
 
             Config.Save();
             if (saveOnSet)
