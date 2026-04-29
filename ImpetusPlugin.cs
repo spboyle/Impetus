@@ -14,14 +14,14 @@ namespace Impetus
     public class ImpetusPlugin : BaseUnityPlugin
     {
         internal const string ModName = "Impetus";
-        internal const string ModVersion = "1.0.0";
+        internal const string ModVersion = "1.1.0";
         internal const string Author = "CodeWarrior";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
         internal static string ConnectionError = "";
         private readonly Harmony HarmonyInstance = new(ModGUID);
         public static readonly ManualLogSource ImpetusLogger = BepInEx.Logging.Logger.CreateLogSource(ModName);
-        
+
         public static ConfigEntry<float> AccuracyMultiplier = null!;
         public static ConfigEntry<float> VelocityMultiplier = null!;
         public static ConfigEntry<float> SpearLaunchAngle = null!;
@@ -45,10 +45,10 @@ namespace Impetus
             _ = ConfigSync.AddLockingConfigEntry(_serverConfigLocked);
 
             AccuracyMultiplier = config(
-                "Spear", 
-                "Accuracy Multiplier", 0f, 
+                "Spear",
+                "Accuracy Multiplier", 0f,
                 new ConfigDescription(
-                    "Spear accuracy multiplier. Bigger number means aim is worse (more random). Zero means projectile goes exactly where you aim.\nRecommended: 0", 
+                    "Spear accuracy multiplier. Bigger number means aim is worse (more random). Zero means projectile goes exactly where you aim.\nRecommended: 0",
                     new AcceptableValueRange<float>(0f, 1f),
                     new ConfigurationManagerAttributes{ShowRangeAsPercent = false}
                     )
@@ -132,29 +132,29 @@ namespace Impetus
             return true;
         }
     }
-	
-	[HarmonyPatch(typeof(Projectile), "Setup")]
-	public static class Projectile_Setup_Patch
-	{
-		public static bool Prefix(ref Projectile __instance, Character owner, Vector3 velocity, float hitNoise,
-			HitData hitData, ItemDrop.ItemData item)
-		{
-			if (__instance == null)
-			{
-				return true;
-			}
-            
-			if (!owner.IsPlayer())
-			{
-				return true;
-			}
 
-			if (item.m_shared.m_attack is not { m_attackAnimation: "spear_throw", m_attackType: Attack.AttackType.Projectile })
-			{
-				return true;
-			}
-			__instance.m_gravity = ImpetusPlugin.SpearGravity.Value;
-			return true;
-		}
-	}
+    [HarmonyPatch(typeof(Projectile), "Setup")]
+    public static class Projectile_Setup_Patch
+    {
+        public static bool Prefix(ref Projectile __instance, Character owner, Vector3 velocity, float hitNoise,
+            HitData hitData, ItemDrop.ItemData item)
+        {
+            if (__instance == null)
+            {
+                return true;
+            }
+
+            if (!owner.IsPlayer())
+            {
+                return true;
+            }
+
+            if (item.m_shared.m_attack is not { m_attackAnimation: "spear_throw", m_attackType: Attack.AttackType.Projectile })
+            {
+                return true;
+            }
+            __instance.m_gravity = ImpetusPlugin.SpearGravity.Value;
+            return true;
+        }
+    }
 }
