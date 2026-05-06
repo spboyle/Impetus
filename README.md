@@ -14,7 +14,7 @@ The implementation looks for the spear throw attack animation when deciding to a
 ## Credits
 This code is cobbled together from [BetterArchery](https://thunderstore.io/c/valheim/p/ishid4/BetterArchery/) and [BowPlugin](https://thunderstore.io/c/valheim/p/blacks7ar/BowPlugin/).
 
-And of course, credits to Azumatt for writing a ton of code that facillitates both old and new modders in creating content.
+And of course, credits to Azumatt for writing a ton of code that facilitates both old and new modders in creating content.
 
 ## Questions, Comments, Suggestions
 `@CodeWarrior` in one of these (yes there are two! idk why)
